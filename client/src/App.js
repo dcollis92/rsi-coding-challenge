@@ -27,7 +27,9 @@ function App() {
         columns={columns}
         options={{
           search: true,
-          columnsButton: true
+          columnsButton: true,
+          exportButton: true,
+          filtering: true,
         }}
       />
     </ThemeProvider>
