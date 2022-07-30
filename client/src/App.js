@@ -2,7 +2,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { Typography } from '@mui/material';
 import theme from './Theme';
 import mockData from './data';
-import MaterialTable from 'material-table';
+import MaterialTable, { Column } from '@material-table/core';
 
 // Icons
 // import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -13,16 +13,16 @@ import MaterialTable from 'material-table';
 
 function App() {
   const columns = [
-    { title: 'Affidavit No', field: 'AFFIDAVITNO', type: 'string' },
-    { title: 'Policy No', field: 'POLICYNO', type: 'string' },
-    { title: 'Insured Name', field: 'RISKINSUREDNAME', type: 'string' },
-    { title: 'Type', field: 'TRANSACTIONTYPE', type: 'string' },
-    { title: 'Premium', field: 'AMOUNT', type: 'string' },
-    { title: 'Inception', field: 'EFFECTIVEDATE', type: 'date' },
-    { title: 'Expiration', field: 'EXPIRATIONDATE', type: 'date' },
-    { title: 'Batch', field: 'BATCHID', type: 'numeric' },
-    { title: 'Submitted', field: 'RECIEVEDATE', type: 'date' },
-    { title: 'Proc State', field: 'PROCESSEDSTATE', type: 'string' }
+    { title: 'Affidavit No', field: 'PARTA_TRANSACTION.AFFIDAVITNO', type: 'string' },
+    { title: 'Policy No', field: 'PARTA_TRANSACTION.POLICYNO', type: 'string' },
+    { title: 'Insured Name', field: 'PARTA_TRANSACTION.RISKINSUREDNAME', type: 'string' },
+    { title: 'Type', field: 'PARTA_TRANSACTION.TRANSACTIONTYPE', type: 'string' },
+    { title: 'Premium', field: 'PARTA_TRANSACTION.AMOUNT', type: 'currency' },
+    { title: 'Inception', field: 'PARTA_TRANSACTION.EFFECTIVEDATE', type: 'date' },
+    { title: 'Expiration', field: 'PARTA_TRANSACTION.EXPIRATIONDATE', type: 'date' },
+    { title: 'Batch', field: 'PARTA_TRANSACTION.BATCHID', type: 'numeric' },
+    { title: 'Submitted', field: 'PARTA_TRANSACTION.RECEIVEDATE', type: 'date' },
+    { title: 'Proc State', field: 'PARTA_TRANSACTION.PROCESSEDSTATE', type: 'string' }
   ];
 
   return (
