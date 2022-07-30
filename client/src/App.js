@@ -2,10 +2,11 @@ import { ThemeProvider } from '@mui/material/styles';
 import { Typography } from '@mui/material';
 import theme from './Theme';
 import mockData from './data';
+import MaterialTable from 'material-table';
+
+// MUI
 // import MoreVertIcon from '@mui/icons-material/MoreVert';
 // import ViewHeadlineIcon from '@mui/icons-material/ViewHeadline';
-import { MaterialTable } from 'material-table';
-
 
 function App() {
   const columns = [
@@ -16,7 +17,7 @@ function App() {
     { title: 'Premium', field: 'AMOUNT', type: 'currency' },
     { title: 'Inception', field: 'EFFECTIVEDATE', type: 'date' },
     { title: 'Expiration', field: 'EXPIRATIONDATE', type: 'date' },
-    { title: 'Batch', field: 'BATCHID', type: 'number' },
+    { title: 'Batch', field: 'BATCHID', type: 'numeric' },
     { title: 'Submitted', field: 'RECIEVEDATE', type: 'date' },
     { title: 'Proc State', field: 'PROCESSEDSTATE', type: 'string' }
   ];
