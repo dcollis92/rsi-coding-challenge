@@ -2,7 +2,8 @@ import { ThemeProvider } from '@mui/material/styles';
 import { Typography } from '@mui/material';
 import theme from './Theme';
 import mockData from './data';
-import MaterialTable, { Column } from '@material-table/core';
+import React from 'react';
+import MaterialTable from '@material-table/core';
 
 // Icons
 // import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -12,6 +13,9 @@ import MaterialTable, { Column } from '@material-table/core';
 // import ViewHeadlineIcon from '@mui/icons-material/ViewHeadline';
 
 function App() {
+  const { useState } = React;
+  const [selectedRow, setSelectedRow] = useState(null);
+
   const columns = [
     { title: 'Affidavit No', field: 'PARTA_TRANSACTION.AFFIDAVITNO', type: 'string' },
     { title: 'Policy No', field: 'PARTA_TRANSACTION.POLICYNO', type: 'string' },
@@ -31,7 +35,10 @@ function App() {
       <MaterialTable
         data={mockData}
         columns={columns}
+        onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
         options={{
+          rowStyle: rowData => ({
+          backgroundColor: (selectedRow === rowData.tableData.id) ? '#e2f1da' : '#FFF'}),
           search: true,
           columnsButton: true,
           exportButton: true,
@@ -46,5 +53,4 @@ function App() {
 }
 
 export default App;
-
 
