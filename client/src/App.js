@@ -30,6 +30,7 @@ function App() {
           columnsButton: true,
           exportButton: true,
           filtering: true,
+          sorting: true,
         }}
       />
     </ThemeProvider>
