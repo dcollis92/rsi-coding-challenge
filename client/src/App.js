@@ -25,9 +25,15 @@ function App() {
       <MaterialTable
         data={mockData}
         columns={columns}
+        options={{
+          search: true,
+          columnsButton: true
+        }}
       />
     </ThemeProvider>
   );
 }
 
 export default App;
+
+
