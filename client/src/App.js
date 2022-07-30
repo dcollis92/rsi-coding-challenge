@@ -4,8 +4,11 @@ import theme from './Theme';
 import mockData from './data';
 import MaterialTable from 'material-table';
 
-// MUI
+// Icons
 // import MoreVertIcon from '@mui/icons-material/MoreVert';
+// import ViewColumnIcon from '@mui/icons-material/ViewColumn';
+// import SaveAltIcon from '@mui/icons-material/SaveAlt';
+// import FilterListIcon from '@mui/icons-material/FilterList';
 // import ViewHeadlineIcon from '@mui/icons-material/ViewHeadline';
 
 function App() {
@@ -14,7 +17,7 @@ function App() {
     { title: 'Policy No', field: 'POLICYNO', type: 'string' },
     { title: 'Insured Name', field: 'RISKINSUREDNAME', type: 'string' },
     { title: 'Type', field: 'TRANSACTIONTYPE', type: 'string' },
-    { title: 'Premium', field: 'AMOUNT', type: 'currency' },
+    { title: 'Premium', field: 'AMOUNT', type: 'string' },
     { title: 'Inception', field: 'EFFECTIVEDATE', type: 'date' },
     { title: 'Expiration', field: 'EXPIRATIONDATE', type: 'date' },
     { title: 'Batch', field: 'BATCHID', type: 'numeric' },
