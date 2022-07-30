@@ -31,6 +31,8 @@ function App() {
           exportButton: true,
           filtering: true,
           sorting: true,
+          pageSize: 10,
+          pageSizeOptions: [10,25,50,100]
         }}
       />
     </ThemeProvider>
