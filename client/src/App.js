@@ -4,6 +4,9 @@ import theme from "./Theme";
 import mockData from "./data";
 import React, { useState } from "react";
 import MaterialTable from "@material-table/core";
+import { ExportCsv, ExportPdf } from '@material-table/exporters';
+
+
 
 // Icons
 // import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -53,6 +56,7 @@ function App() {
       title: "Proc State",
       field: "PARTA_TRANSACTION.PROCESSEDSTATE",
       type: "string",
+      
     },
   ];
 
@@ -84,7 +88,12 @@ function App() {
           search: true,
           columnsButton: true,
           // Export PDF/CSV
-          exportButton: true,
+          exportMenu: [{
+            label: 'Export PDF',
+            exportFunc: (cols, datas) => ExportPdf(cols, datas, 'mockDataPDF')
+          }, {
+            label: 'Export CSV',
+            exportFunc: (cols, datas) => ExportCsv(cols, datas, 'mockDataCSV')}],
           // Filtering
           filtering: true,
           // Sorting
