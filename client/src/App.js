@@ -94,6 +94,7 @@ function App() {
           }, {
             label: 'Export CSV',
             exportFunc: (cols, datas) => ExportCsv(cols, datas, 'mockDataCSV')}],
+          exportAllData: true,
           // Filtering
           filtering: true,
           // Sorting
