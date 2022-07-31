@@ -2,7 +2,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { Typography } from "@mui/material";
 import theme from "./Theme";
 import mockData from "./data";
-import React from "react";
+import React, { useState } from "react";
 import MaterialTable from "@material-table/core";
 
 // Icons
@@ -13,7 +13,6 @@ import MaterialTable from "@material-table/core";
 // import ViewHeadlineIcon from '@mui/icons-material/ViewHeadline';
 
 function App() {
-  const { useState } = React;
   const [selectedRow, setSelectedRow] = useState(null);
 
   const columns = [
@@ -61,27 +60,36 @@ function App() {
     <ThemeProvider theme={theme}>
       <Typography variant="h6">RSI Coding Challenge</Typography>
       <MaterialTable
+        // empty title per mockups
+        title=' '
         data={mockData}
         columns={columns}
         onRowClick={(evt, selectedRow) =>
           setSelectedRow(selectedRow.tableData.id)
         }
         options={{
+          // Black header
           headerStyle: {
             backgroundColor: theme.palette.grid.main.header,
             color: theme.palette.grid.main.default,
           },
+          // Green Clickable
           rowStyle: (rowData) => ({
             backgroundColor:
               selectedRow === rowData.tableData.id
                 ? theme.palette.grid.main.active
                 : theme.palette.grid.main.default,
           }),
+          // Search
           search: true,
           columnsButton: true,
+          // Export PDF/CSV
           exportButton: true,
+          // Filtering
           filtering: true,
+          // Sorting
           sorting: true,
+          // Rows Per Page
           pageSize: 10,
           pageSizeOptions: [10, 25, 50, 100],
         }}
