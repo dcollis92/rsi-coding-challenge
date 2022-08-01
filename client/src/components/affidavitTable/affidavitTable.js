@@ -102,6 +102,7 @@ function AffidavitTable() {
           },
           {
             icon: () => <MoreVertIcon />,
+            position: 'PARTA_TRANSACTION.PROCESSEDSTATE',
             onClick: (evt, data) => {
               console.log(evt.target);
 

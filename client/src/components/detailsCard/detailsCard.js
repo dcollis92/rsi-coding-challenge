@@ -15,6 +15,10 @@ function DetailsCard() {
             {mockData.PARTA_TRANSACTION.COMPANY.COMPANYNUMBER} -{" "}
             {mockData.PARTA_TRANSACTION.COMPANY.COMPANYNAME}
           </Typography>
+          <Typography variant="body 1">Coverage:</Typography>
+          <Typography variant="body 2">
+            {mockData.PARTA_TRANSACTION.COVERAGE}
+          </Typography>
         </CardContent>
       </Card>
     </>
