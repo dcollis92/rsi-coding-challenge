@@ -88,23 +88,23 @@ function AffidavitTable() {
             icon: FilterListIcon,
             tooltip: "Show Filters",
             isFreeAction: true,
-            onClick: (evt) => {
+            onClick: (event) => {
               this.functionName(!this.state.filter);
             },
           },
+          // Toggle
           {
             icon: ViewHeadlineIcon,
             tooltip: "Toggle Density",
             isFreeAction: true,
-            // onClick: (evt) => {
+            // onClick: (event) => {
             //   this.functionName(!this.state.filter);
             // },
           },
           {
             icon: () => <MoreVertIcon />,
             position: 'PARTA_TRANSACTION.PROCESSEDSTATE',
-            onClick: (evt, data) => {
-              console.log(evt.target);
+            onClick: (event, rowData) => {
 
               return (
                 <Popover
@@ -122,7 +122,7 @@ function AffidavitTable() {
             },
           },
         ]}
-        onRowClick={(evt, selectedRow) =>
+        onRowClick={(event, selectedRow) =>
           setSelectedRow(selectedRow.tableData.id)
         }
         options={{
