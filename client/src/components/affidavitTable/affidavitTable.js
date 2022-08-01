@@ -88,9 +88,9 @@ function AffidavitTable() {
             icon: FilterListIcon,
             tooltip: "Show Filters",
             isFreeAction: true,
-            onClick: (event) => {
-              this.functionName(!this.state.filter);
-            },
+            // onClick: (event) => {
+            //   this.functionName(!this.state.filter);
+            // },
           },
           // Toggle
           {
