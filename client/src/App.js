@@ -1,22 +1,26 @@
+import { ExportCsv, ExportPdf } from "@material-table/exporters";
 import { ThemeProvider } from "@mui/material/styles";
-import { Typography } from "@mui/material";
-import theme from "./Theme";
-import mockData from "./data";
-import React, { useState } from "react";
 import MaterialTable from "@material-table/core";
-import { ExportCsv, ExportPdf } from '@material-table/exporters';
-
-
+import { Typography } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import mockData from "./data";
+import theme from "./Theme";
 
 // Icons
 // import MoreVertIcon from '@mui/icons-material/MoreVert';
-// import ViewColumnIcon from '@mui/icons-material/ViewColumn';
 // import SaveAltIcon from '@mui/icons-material/SaveAlt';
 // import FilterListIcon from '@mui/icons-material/FilterList';
 // import ViewHeadlineIcon from '@mui/icons-material/ViewHeadline';
 
 function App() {
   const [selectedRow, setSelectedRow] = useState(null);
+  const [data, setData] = useState([]);
+
+  // Delaying data to show No Records message
+  useEffect(() => {
+  setTimeout(() => {
+    setData(mockData)
+  }, 2000)}, [])
 
   const columns = [
     {
@@ -56,7 +60,6 @@ function App() {
       title: "Proc State",
       field: "PARTA_TRANSACTION.PROCESSEDSTATE",
       type: "string",
-      
     },
   ];
 
@@ -65,8 +68,8 @@ function App() {
       <Typography variant="h6">RSI Coding Challenge</Typography>
       <MaterialTable
         // empty title per mockups
-        title=' '
-        data={mockData}
+        title=" "
+        data={data}
         columns={columns}
         onRowClick={(evt, selectedRow) =>
           setSelectedRow(selectedRow.tableData.id)
@@ -86,14 +89,22 @@ function App() {
           }),
           // Search
           search: true,
+          // explicitly include 'No Records to Display'
+          showEmptyDataSourceMessage: true,
           columnsButton: true,
           // Export PDF/CSV
-          exportMenu: [{
-            label: 'Export PDF',
-            exportFunc: (cols, datas) => ExportPdf(cols, datas, 'mockDataPDF')
-          }, {
-            label: 'Export CSV',
-            exportFunc: (cols, datas) => ExportCsv(cols, datas, 'mockDataCSV')}],
+          exportMenu: [
+            {
+              label: "Export PDF",
+              exportFunc: (cols, datas) =>
+                ExportPdf(cols, datas, "mockDataPDF"),
+            },
+            {
+              label: "Export CSV",
+              exportFunc: (cols, datas) =>
+                ExportCsv(cols, datas, "mockDataCSV"),
+            },
+          ],
           exportAllData: true,
           // Filtering
           filtering: true,
