@@ -8,8 +8,8 @@ import theme from "../../Theme";
 
 // Icons
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import FilterListIcon from '@mui/icons-material/FilterList';
-import ViewHeadlineIcon from '@mui/icons-material/ViewHeadline';
+import FilterListIcon from "@mui/icons-material/FilterList";
+import ViewHeadlineIcon from "@mui/icons-material/ViewHeadline";
 
 function AffidavitTable() {
   const [selectedRow, setSelectedRow] = useState(null);
@@ -19,6 +19,7 @@ function AffidavitTable() {
   useEffect(() => {
     setTimeout(() => {
       setData(mockData);
+      console.log(mockData);
     }, 2000);
   }, []);
 
@@ -67,11 +68,18 @@ function AffidavitTable() {
       title: "Submitted",
       field: "PARTA_TRANSACTION.RECEIVEDATE",
       type: "date",
+      emptyValue: "N/A",
     },
     {
       title: "Proc State",
       field: "PARTA_TRANSACTION.PROCESSEDSTATE",
       type: "string",
+      emptyValue: 'n/a',
+      render: (rowData) => (
+        rowData.PARTA_TRANSACTION.PROCESSEDSTATE === ''
+          ? 'N/A'
+          : rowData.PARTA_TRANSACTION.PROCESSEDSTATE
+      ),
     },
   ];
 
@@ -103,9 +111,8 @@ function AffidavitTable() {
           },
           {
             icon: () => <MoreVertIcon />,
-            position: 'PARTA_TRANSACTION.PROCESSEDSTATE',
+            position: "PARTA_TRANSACTION.PROCESSEDSTATE",
             onClick: (event, rowData) => {
-
               return (
                 <Popover
                   open={true}
@@ -134,7 +141,7 @@ function AffidavitTable() {
             color: theme.palette.grid.main.default,
           },
 
-          // Green Clickable
+          // Green clickable row
           rowStyle: (rowData) => ({
             backgroundColor:
               selectedRow === rowData.tableData.id
