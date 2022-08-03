@@ -1,12 +1,10 @@
-import AffidavitTable from "./components/affidavitTable/affidavitTable";
+import AffidavitTable from "./components/AffidavitTable/AffidavitTable";
 import { ThemeProvider } from "@mui/material/styles";
 import { Typography } from "@mui/material";
 import theme from "./Theme";
 
 
 function App() {
-  
-
   return (
     <>
       <ThemeProvider theme={theme}>

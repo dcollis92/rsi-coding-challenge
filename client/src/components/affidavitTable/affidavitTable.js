@@ -1,14 +1,12 @@
 import { ExportCsv, ExportPdf } from "@material-table/exporters";
-import DetailsCard from "../detailsCard/detailsCard";
 import React, { useState, useEffect } from "react";
 import MaterialTable from "@material-table/core";
-import Popover from "@mui/material/Popover";
 import mockData from "../../data";
 import theme from "../../Theme";
-import Button from "@mui/material/Button";
+import ProcState from "../ProcState/ProcState";
 
 // Icons
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+// import MoreVertIcon from "@mui/icons-material/MoreVert";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import ViewHeadlineIcon from "@mui/icons-material/ViewHeadline";
 
@@ -23,59 +21,6 @@ function AffidavitTable() {
       console.log(mockData);
     }, 2000);
   }, []);
-
-  const ProcState = ({ rowData }) => {
-    const [open, setOpen] = useState(false);
-    const [anchorEl, setAnchorEl] = useState(null);
-
-    const buttonStyle = {
-      background: "white",
-      color: "black",
-      height: "30px",
-    };
-
-    const cellStyle = { display: "flex", alignItems: "center" };
-
-    const handleOpen = (e) => {
-      setOpen(true);
-      setAnchorEl(e.currentTarget);
-    };
-
-    const handleClose = (e) => setOpen(false);
-
-    return (
-      rowData.PARTA_TRANSACTION && (
-        <div style={cellStyle}>
-          <p style={{ marginRight: "10px" }}>
-            {rowData.PARTA_TRANSACTION.PROCESSEDSTATE === ""
-              ? "N/A"
-              : rowData.PARTA_TRANSACTION.PROCESSEDSTATE}
-          </p>
-
-          <Button
-            style={buttonStyle}
-            variant="contained"
-            onClick={handleOpen}
-            aria-describedby={rowData.PARTA_TRANSACTION.PROCESSEDSTATE.ITEMNO}
-          >
-            ...
-          </Button>
-          <Popover
-            aria-describedby={rowData.PARTA_TRANSACTION.PROCESSEDSTATE.ITEMNO}
-            open={open}
-            anchorEl={anchorEl}
-            onClose={handleClose}
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "left",
-            }}
-          >
-            <DetailsCard PARTA_TRANSACTION={rowData.PARTA_TRANSACTION} />
-          </Popover>
-        </div>
-      )
-    );
-  };
 
   const columns = [
     {
@@ -160,31 +105,12 @@ function AffidavitTable() {
             //   this.functionName(!this.state.filter);
             // },
           },
-          {
-            icon: MoreVertIcon,
-            position: "PARTA_TRANSACTION.PROCESSEDSTATE",
-            onClick: (event, rowData) => {
-              return (
-                <Popover
-                  open={true}
-                  anchorReference="anchorPosition"
-                  anchorPosition={{ top: 200, left: 400 }}
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                >
-                  <DetailsCard />
-                </Popover>
-              );
-            },
-          },
+      
         ]}
         onRowClick={(event, selectedRow) =>
           setSelectedRow(selectedRow.tableData.id)
         }
         options={{
-          actionsColumnIndex: -1,
 
           // Black table header
           headerStyle: {
