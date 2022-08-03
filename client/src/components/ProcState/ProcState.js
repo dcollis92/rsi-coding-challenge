@@ -1,9 +1,9 @@
-import DetailsCard from "../DetailsCard/DetailsCard";
 import { useState } from "react";
-import Popover from "@mui/material/Popover";
 import { Typography } from "@mui/material";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+import Popover from "@mui/material/Popover";
 import IconButton from "@mui/material/IconButton";
+import DetailsCard from "../DetailsCard/DetailsCard";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 const ProcState = ({ rowData }) => {
   const [open, setOpen] = useState(false);
@@ -26,11 +26,11 @@ const ProcState = ({ rowData }) => {
     rowData.PARTA_TRANSACTION && (
       <div style={cellStyle}>
         <Typography>
+          {/* address null values */}
           {rowData.PARTA_TRANSACTION.PROCESSEDSTATE === ""
             ? "N/A"
             : rowData.PARTA_TRANSACTION.PROCESSEDSTATE}
         </Typography>
-
         <IconButton
           variant="contained"
           onClick={handleOpen}
