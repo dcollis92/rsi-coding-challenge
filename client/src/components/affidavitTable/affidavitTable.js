@@ -18,7 +18,6 @@ function AffidavitTable() {
   useEffect(() => {
     setTimeout(() => {
       setData(mockData);
-      console.log(mockData);
     }, 2000);
   }, []);
 
