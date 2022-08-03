@@ -5,6 +5,7 @@ import MaterialTable from "@material-table/core";
 import Popover from "@mui/material/Popover";
 import mockData from "../../data";
 import theme from "../../Theme";
+import Button from "@mui/material/Button";
 
 // Icons
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -22,6 +23,59 @@ function AffidavitTable() {
       console.log(mockData);
     }, 2000);
   }, []);
+
+  const ProcState = ({ rowData }) => {
+    const [open, setOpen] = useState(false);
+    const [anchorEl, setAnchorEl] = useState(null);
+
+    const buttonStyle = {
+      background: "white",
+      color: "black",
+      height: "30px",
+    };
+
+    const cellStyle = { display: "flex", alignItems: "center" };
+
+    const handleOpen = (e) => {
+      setOpen(true);
+      setAnchorEl(e.currentTarget);
+    };
+
+    const handleClose = (e) => setOpen(false);
+
+    return (
+      rowData.PARTA_TRANSACTION && (
+        <div style={cellStyle}>
+          <p style={{ marginRight: "10px" }}>
+            {rowData.PARTA_TRANSACTION.PROCESSEDSTATE === ""
+              ? "N/A"
+              : rowData.PARTA_TRANSACTION.PROCESSEDSTATE}
+          </p>
+
+          <Button
+            style={buttonStyle}
+            variant="contained"
+            onClick={handleOpen}
+            aria-describedby={rowData.PARTA_TRANSACTION.PROCESSEDSTATE.ITEMNO}
+          >
+            ...
+          </Button>
+          <Popover
+            aria-describedby={rowData.PARTA_TRANSACTION.PROCESSEDSTATE.ITEMNO}
+            open={open}
+            anchorEl={anchorEl}
+            onClose={handleClose}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "left",
+            }}
+          >
+            <DetailsCard PARTA_TRANSACTION={rowData.PARTA_TRANSACTION} />
+          </Popover>
+        </div>
+      )
+    );
+  };
 
   const columns = [
     {
@@ -68,18 +122,15 @@ function AffidavitTable() {
       title: "Submitted",
       field: "PARTA_TRANSACTION.RECEIVEDATE",
       type: "date",
+      // address null values
       emptyValue: "N/A",
     },
     {
       title: "Proc State",
       field: "PARTA_TRANSACTION.PROCESSEDSTATE",
       type: "string",
-      emptyValue: 'n/a',
-      render: (rowData) => (
-        rowData.PARTA_TRANSACTION.PROCESSEDSTATE === ''
-          ? 'N/A'
-          : rowData.PARTA_TRANSACTION.PROCESSEDSTATE
-      ),
+      // address null values
+      render: (rowData) => <ProcState rowData={rowData} />,
     },
   ];
 
@@ -110,7 +161,7 @@ function AffidavitTable() {
             // },
           },
           {
-            icon: () => <MoreVertIcon />,
+            icon: MoreVertIcon,
             position: "PARTA_TRANSACTION.PROCESSEDSTATE",
             onClick: (event, rowData) => {
               return (
