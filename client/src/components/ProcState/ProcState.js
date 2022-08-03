@@ -1,25 +1,23 @@
 import DetailsCard from "../DetailsCard/DetailsCard";
 import { useState } from "react";
-import Button from "@mui/material/Button";
 import Popover from "@mui/material/Popover";
+import { Typography } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import IconButton from "@mui/material/IconButton";
 
 const ProcState = ({ rowData }) => {
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const buttonStyle = {
-    background: "white",
-    color: "black",
-    height: "30px",
+  const cellStyle = {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
   };
-
-  const cellStyle = { display: "flex", alignItems: "center" };
 
   const handleOpen = (event) => {
     setOpen(true);
     setAnchorEl(event.currentTarget);
-    console.log(rowData.PARTA_TRANSACTION.COMPANY[0].COMPANYNAME)
   };
 
   const handleClose = (event) => setOpen(false);
@@ -27,20 +25,19 @@ const ProcState = ({ rowData }) => {
   return (
     rowData.PARTA_TRANSACTION && (
       <div style={cellStyle}>
-        <p style={{ marginRight: "10px" }}>
+        <Typography>
           {rowData.PARTA_TRANSACTION.PROCESSEDSTATE === ""
             ? "N/A"
             : rowData.PARTA_TRANSACTION.PROCESSEDSTATE}
-        </p>
+        </Typography>
 
-        <Button
-          style={buttonStyle}
+        <IconButton
           variant="contained"
           onClick={handleOpen}
           aria-describedby={rowData.PARTA_TRANSACTION.BATCHID}
         >
-          ...
-        </Button>
+          <MoreVertIcon />
+        </IconButton>
         <Popover
           aria-describedby={rowData.PARTA_TRANSACTION.BATCHID}
           open={open}
