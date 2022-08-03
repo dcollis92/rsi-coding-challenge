@@ -16,12 +16,13 @@ const ProcState = ({ rowData }) => {
 
   const cellStyle = { display: "flex", alignItems: "center" };
 
-  const handleOpen = (e) => {
+  const handleOpen = (event) => {
     setOpen(true);
-    setAnchorEl(e.currentTarget);
+    setAnchorEl(event.currentTarget);
+    console.log(rowData.PARTA_TRANSACTION.COMPANY[0].COMPANYNAME)
   };
 
-  const handleClose = (e) => setOpen(false);
+  const handleClose = (event) => setOpen(false);
 
   return (
     rowData.PARTA_TRANSACTION && (
@@ -36,12 +37,12 @@ const ProcState = ({ rowData }) => {
           style={buttonStyle}
           variant="contained"
           onClick={handleOpen}
-          aria-describedby={rowData.PARTA_TRANSACTION.PROCESSEDSTATE.ITEMNO}
+          aria-describedby={rowData.PARTA_TRANSACTION.BATCHID}
         >
           ...
         </Button>
         <Popover
-          aria-describedby={rowData.PARTA_TRANSACTION.PROCESSEDSTATE.ITEMNO}
+          aria-describedby={rowData.PARTA_TRANSACTION.BATCHID}
           open={open}
           anchorEl={anchorEl}
           onClose={handleClose}

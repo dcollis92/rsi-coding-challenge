@@ -67,6 +67,7 @@ function AffidavitTable() {
       title: "Submitted",
       field: "PARTA_TRANSACTION.RECEIVEDATE",
       type: "date",
+      dateSetting: "MM/DD/YYY",
       // address null values
       emptyValue: "N/A",
     },
@@ -107,7 +108,6 @@ function AffidavitTable() {
             //   this.functionName(!this.state.filter);
             // },
           },
-      
         ]}
         onRowClick={(event, selectedRow) =>
           setSelectedRow(selectedRow.tableData.id)

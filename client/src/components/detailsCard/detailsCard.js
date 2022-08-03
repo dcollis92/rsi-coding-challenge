@@ -1,4 +1,4 @@
-import { Card, CardContent } from "@mui/material";
+import { Card, CardContent, CardHeader } from "@mui/material";
 import { Typography } from "@mui/material";
 
 function DetailsCard({ PARTA_TRANSACTION }) {
@@ -9,13 +9,13 @@ function DetailsCard({ PARTA_TRANSACTION }) {
           Affidavit No {PARTA_TRANSACTION.AFFIDAVITNO}
         </Typography>
         <CardContent>
-          <Typography variant="body 1">Company(s):</Typography>
-          <Typography variant="body 2">
-            {PARTA_TRANSACTION.COMPANY.COMPANYNUMBER} -{" "}
-            {PARTA_TRANSACTION.COMPANY.COMPANYNAME}
+          <Typography variant="subtitle1">Company(s): </Typography>
+          <Typography variant="body2">
+            {PARTA_TRANSACTION.COMPANY[0].COMPANYNUMBER} -{" "}
+            {PARTA_TRANSACTION.COMPANY[0].COMPANYNAME}
           </Typography>
-          <Typography variant="body 1">Coverage:</Typography>
-          <Typography variant="body 2">{PARTA_TRANSACTION.COVERAGE}</Typography>
+          <Typography variant="subtitle1">Coverage: </Typography>
+          <Typography variant="body2">{PARTA_TRANSACTION.COVERAGE}</Typography>
         </CardContent>
       </Card>
     </>
