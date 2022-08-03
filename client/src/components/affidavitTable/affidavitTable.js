@@ -1,12 +1,11 @@
-import { ExportCsv, ExportPdf } from "@material-table/exporters";
 import React, { useState, useEffect } from "react";
 import MaterialTable from "@material-table/core";
 import mockData from "../../data";
 import theme from "../../Theme";
 import ProcState from "../ProcState/ProcState";
+import { ExportCsv, ExportPdf } from "@material-table/exporters";
 
 // Icons
-// import MoreVertIcon from "@mui/icons-material/MoreVert";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import ViewHeadlineIcon from "@mui/icons-material/ViewHeadline";
 
@@ -14,7 +13,7 @@ function AffidavitTable() {
   const [selectedRow, setSelectedRow] = useState(null);
   const [data, setData] = useState([]);
 
-  // Delaying data to show NoData message
+  // NoData message pre-loading
   useEffect(() => {
     setTimeout(() => {
       setData(mockData);
@@ -82,8 +81,6 @@ function AffidavitTable() {
   return (
     <>
       <MaterialTable
-        // empty title per mockups
-        title=" "
         data={data}
         columns={columns}
         actions={[
@@ -92,33 +89,26 @@ function AffidavitTable() {
             icon: FilterListIcon,
             tooltip: "Show Filters",
             isFreeAction: true,
-            // adjust code below
-            // onClick: (event) => {
-            //   this.functionName(!this.state.filter);
-            // },
           },
-          // Toggle
+          // Density Toggle icon
           {
             icon: ViewHeadlineIcon,
             tooltip: "Toggle Density",
             isFreeAction: true,
-            // adjust code below
-            // onClick: (event) => {
-            //   this.functionName(!this.state.filter);
-            // },
           },
         ]}
         onRowClick={(event, selectedRow) =>
           setSelectedRow(selectedRow.tableData.id)
         }
         options={{
-          // Black table header
+          // empty title per mockups
+          showTitle: false,
+
+          // Table styling
           headerStyle: {
             backgroundColor: theme.palette.grid.main.header,
             color: theme.palette.grid.main.default,
           },
-
-          // Green clickable row
           rowStyle: (rowData) => ({
             backgroundColor:
               selectedRow === rowData.tableData.id
@@ -126,14 +116,17 @@ function AffidavitTable() {
                 : theme.palette.grid.main.default,
           }),
 
-          // Search
+          // Table Search
           search: true,
 
-          // explicitly include 'No Records to Display', defaults to true
+          // explicitly include 'No Records to Display'
+          // defaults to true
           showEmptyDataSourceMessage: true,
+
+          // Hide and Show Columns
           columnsButton: true,
 
-          // Export PDF/CSV
+          // Export Data
           exportMenu: [
             {
               label: "Export PDF",

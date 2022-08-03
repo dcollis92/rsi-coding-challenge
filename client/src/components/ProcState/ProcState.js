@@ -26,7 +26,6 @@ const ProcState = ({ rowData }) => {
     rowData.PARTA_TRANSACTION && (
       <div style={cellStyle}>
         <Typography>
-          {/* address null values */}
           {rowData.PARTA_TRANSACTION.PROCESSEDSTATE === ""
             ? "N/A"
             : rowData.PARTA_TRANSACTION.PROCESSEDSTATE}
