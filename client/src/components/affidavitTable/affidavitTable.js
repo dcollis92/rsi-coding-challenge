@@ -92,6 +92,7 @@ function AffidavitTable() {
             icon: FilterListIcon,
             tooltip: "Show Filters",
             isFreeAction: true,
+            // adjust code below
             // onClick: (event) => {
             //   this.functionName(!this.state.filter);
             // },
@@ -101,6 +102,7 @@ function AffidavitTable() {
             icon: ViewHeadlineIcon,
             tooltip: "Toggle Density",
             isFreeAction: true,
+            // adjust code below
             // onClick: (event) => {
             //   this.functionName(!this.state.filter);
             // },
@@ -111,7 +113,6 @@ function AffidavitTable() {
           setSelectedRow(selectedRow.tableData.id)
         }
         options={{
-
           // Black table header
           headerStyle: {
             backgroundColor: theme.palette.grid.main.header,
