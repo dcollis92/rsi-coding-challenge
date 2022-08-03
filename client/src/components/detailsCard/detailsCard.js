@@ -5,9 +5,11 @@ function DetailsCard({ PARTA_TRANSACTION }) {
   return (
     <>
       <Card>
+        <div>
         <Typography type="headline" variant="body1">
           Affidavit No {PARTA_TRANSACTION.AFFIDAVITNO}
         </Typography>
+        </div>
         <CardContent>
           <Typography variant="subtitle1">Company(s): </Typography>
           <Typography variant="body2">
